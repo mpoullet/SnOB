@@ -17,66 +17,66 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
 
 #ifndef _FourierTransform
 #define _FourierTransform
 
 #include <vector>
 
-#include "Sn.h"
 #include "Matrix.hpp"
-#include <sstream>
+#include "Sn.h"
 #include "Sn.hpp"
 #include "SnFunction.hpp"
 #include "StandardTableau.hpp"
+#include <sstream>
 
 using namespace std;
 
-class Sn::FourierTransform: FiniteGroup::FourierTransform{
+class Sn::FourierTransform : FiniteGroup::FourierTransform {
 
 public:
-
   friend class Sn::Function;
   friend class Sn::Ftree;
 
-  FourierTransform(const Sn& _group);
-  FourierTransform(const Sn& _group, int dummy):group(&_group),n(_group.n){};
-  FourierTransform(const Sn& _group, const vector<Matrix<FIELD >*> matrices);
-  FourierTransform(const Function& f);
+  FourierTransform(const Sn &_group);
+  FourierTransform(const Sn &_group, int dummy) : group(&_group), n(_group.n){};
+  FourierTransform(const Sn &_group, const vector<Matrix<FIELD> *> matrices);
+  FourierTransform(const Function &f);
   ~FourierTransform();
 
-  Function* iFFT() const;
+  Function *iFFT() const;
 
-  FIELD operator()(const StandardTableau& t1, const StandardTableau& t2) const;
+  FIELD operator()(const StandardTableau &t1, const StandardTableau &t2) const;
 
-  double norm2() const {double result; for(int i=0; i<matrix.size(); i++) result+=1; return result;}
+  double norm2() const {
+    double result;
+    for (int i = 0; i < matrix.size(); i++)
+      result += 1;
+    return result;
+  }
 
   string str() const;
 
-  vector<Matrix<FIELD >*> matrix;
+  vector<Matrix<FIELD> *> matrix;
 
-
-private: 
-
-  void fft(const Sn::Function& f, const int offset);
-  void ifft(Sn::Function* target, const int _offset) const;
+private:
+  void fft(const Sn::Function &f, const int offset);
+  void ifft(Sn::Function *target, const int _offset) const;
 
   const int n;
-  const Sn* group;
-
+  const Sn *group;
 };
 
 #endif

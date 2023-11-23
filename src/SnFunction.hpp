@@ -17,19 +17,18 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
 
 #ifndef _SnFunction
 #define _SnFunction
@@ -38,40 +37,34 @@
 
 #include "Matrix.hpp"
 
+#include "FiniteGroup.hpp"
 #include "Sn.h"
 #include "Sn.hpp"
 #include "SnElement.hpp"
-#include "SnFourierTransform.hpp" 
-#include "FiniteGroup.hpp"
+#include "SnFourierTransform.hpp"
 
 using namespace std;
 
-
-
-class Sn::Function: public FiniteGroup::Function{
+class Sn::Function : public FiniteGroup::Function {
 public:
-
   friend class Sn::FourierTransform;
   friend class Sn::Ftree;
 
-  Function(const Sn& _group); 
-  Function(const FourierTransform& F); 
-  ~Function(){delete[] f;}
+  Function(const Sn &_group);
+  Function(const FourierTransform &F);
+  ~Function() { delete[] f; }
 
-  FIELD& operator[](const Element& p);
-  FourierTransform* FFT() const; 
-  Function* convolve(const Function& o) const;
+  FIELD &operator[](const Element &p);
+  FourierTransform *FFT() const;
+  Function *convolve(const Function &o) const;
   void randomize();
   void diffuse(const double beta);
   string str() const;
 
-
 private:
-
   // void fft(FourierTransform* result, const int offset) const;
 
-  const Sn* group;
-
+  const Sn *group;
 };
 
 #endif

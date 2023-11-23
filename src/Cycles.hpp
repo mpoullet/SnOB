@@ -17,25 +17,24 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
 
-
 #ifndef _Cycles
 #define _Cycles
 
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -43,14 +42,11 @@ class Cycles;
 
 #include "SnElement.hpp"
 
-
-class Cycles: vector<vector<int> > {
+class Cycles : vector<vector<int>> {
 public:
-
-  Cycles(const Sn::Element& p);
+  Cycles(const Sn::Element &p);
 
   string str();
-
 };
 
 #endif

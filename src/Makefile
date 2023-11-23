@@ -1,4 +1,5 @@
-CFLAGS = #-I /usr/include/custom/matrix
+# CFLAGS = #-I /usr/include/custom/matrix
+CFLAGS := -Wall -Werror -Wextra -Og -std=c++20 -fsanitize=address
 LIBS = -lstdc++ -lm
 
 
