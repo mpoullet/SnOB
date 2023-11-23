@@ -34,9 +34,10 @@
 #include "SnIrreducible.hpp"
 
 #include <iostream>
+#include <cassert>
 
 Sn::FourierTransform::FourierTransform(const Sn &_group)
-    : group(&_group), n(_group.n) {
+    : n(_group.n), group(&_group) {
   for (unsigned i = 0; i < group->irreducibles.size(); i++) {
     const int degree = group->irreducibles[i]->degree;
     matrix.push_back(new Matrix<FIELD>(degree, degree, 0));
@@ -45,13 +46,13 @@ Sn::FourierTransform::FourierTransform(const Sn &_group)
 
 Sn::FourierTransform::FourierTransform(const Sn &_group,
                                        const vector<Matrix<FIELD> *> matrices)
-    : group(&_group), n(_group.n) {
+    : n(_group.n), group(&_group) {
   for (unsigned i = 0; i < group->irreducibles.size(); i++)
     matrix.push_back(matrices[i]);
 }
 
 Sn::FourierTransform::FourierTransform(const Function &f)
-    : group(f.group), n(f.group->n) {
+    : n(f.group->n), group(f.group) {
   fft(f, 0);
 }
 
@@ -86,7 +87,7 @@ void Sn::FourierTransform::fft(const Sn::Function &f, const int offset) {
 
     for (int j = 1; j <= n; j++) {
       vector<Matrix<FIELD> *> participants;
-      for (int eta = 0; eta < rho->etaindex.size(); eta++)
+      for (unsigned eta = 0; eta < rho->etaindex.size(); eta++)
         participants.push_back(
             F[j - 1]->matrix[rho->etaindex[eta]]); // Hack here
       Matrix<FIELD> tildef(degree, participants);
@@ -107,9 +108,10 @@ void Sn::FourierTransform::ifft(Sn::Function *target, const int _offset) const {
   Sn::FourierTransform Fsub(*group->subgroup);
   for (int j = 1; j <= n; j++) {
     if (j > 1)
-      for (unsigned i = 0; i < Fsub.matrix.size(); i++)
+      for (unsigned i = 0; i < Fsub.matrix.size(); i++) {
         Fsub.matrix[i]->fill(0);
-    for (int rhoindex = 0; rhoindex < matrix.size(); rhoindex++) {
+      }
+    for (unsigned rhoindex = 0; rhoindex < matrix.size(); rhoindex++) {
       Sn::Irreducible *rho = group->irreducibles[rhoindex];
       Matrix<FIELD> M(*matrix[rhoindex]);
       // rho->applyTransposition(j,M);
@@ -157,6 +159,8 @@ FIELD Sn::FourierTransform::operator()(const StandardTableau &t1,
       }
     }
   }
+  assert(false);
+  return 0;
 }
 
 string Sn::FourierTransform::str() const {

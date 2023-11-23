@@ -84,8 +84,8 @@ string Sn::Function::str() const {
 
 Sn::Function *Sn::Function::convolve(const Sn::Function &o) const {
   Sn::Function *result = new Sn::Function(*group);
-  for (unsigned i = 0; i < order; i++)
-    for (unsigned j = 0; j < order; j++) {
+  for (int i = 0; i < order; i++)
+    for (int j = 0; j < order; j++) {
       Sn::Element *z = (*(*group)[j]) * (*(*group)[i]);
       (*result)[*z] += o.f[i] * f[j];
       delete z;
@@ -95,7 +95,7 @@ Sn::Function *Sn::Function::convolve(const Sn::Function &o) const {
 
 void Sn::Function::diffuse(const double beta) {
   FourierTransform *F = FFT();
-  for (int rhoix = 0; rhoix < group->irreducibles.size(); rhoix++) {
+  for (unsigned rhoix = 0; rhoix < group->irreducibles.size(); rhoix++) {
     Sn::Irreducible *rho = group->irreducibles[rhoix];
     Matrix<FIELD> M(rho->degree);
     rho->applyTransposition(n - 1, M);

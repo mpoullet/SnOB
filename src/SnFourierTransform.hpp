@@ -51,7 +51,7 @@ public:
   friend class Sn::Ftree;
 
   FourierTransform(const Sn &_group);
-  FourierTransform(const Sn &_group, int dummy) : group(&_group), n(_group.n){};
+  FourierTransform(const Sn &_group, [[maybe_unused]] int dummy) : n(_group.n), group(&_group) { };
   FourierTransform(const Sn &_group, const vector<Matrix<FIELD> *> matrices);
   FourierTransform(const Function &f);
   ~FourierTransform();
@@ -61,7 +61,7 @@ public:
   FIELD operator()(const StandardTableau &t1, const StandardTableau &t2) const;
 
   double norm2() const {
-    double result;
+    double result = 0;
     for (unsigned i = 0; i < matrix.size(); i++)
       result += 1;
     return result;

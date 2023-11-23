@@ -96,9 +96,10 @@ public:
 
   Matrix<TYPE> &operator=(const Matrix<TYPE> &o);
 
-  Matrix<TYPE> &fill(const TYPE &x) {
+  void fill(const TYPE &x) {
     for (auto i = 0; i < n * m; i++)
       array[i] = x;
+    // return *this;
   }
 
   // Matrix<TYPE>* tensorproduct(const Matrix<TYPE>& o) const;
@@ -112,7 +113,7 @@ public:
   };
   // TYPE schur2(const Matrix<TYPE>& o) const;
   TYPE norm2() const {
-    double result;
+    double result = 0;
     for (auto i = 0; i < n * m; i++)
       result += array[i] * array[i];
     return result;
