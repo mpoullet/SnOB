@@ -49,7 +49,7 @@ Partition::Partition(int a, ...) {
 
 vector<Partition> Partition::restrictions() const {
   vector<Partition> result;
-  for (int i = 0; i < size(); i++) {
+  for (auto i = 0; i < size(); i++) {
     if (i == size() - 1 || at(i) > at(i + 1)) {
       Partition p(*this);
       p[i]--;
@@ -64,7 +64,7 @@ vector<Partition> Partition::restrictions() const {
 string Partition::str() const {
   ostringstream result;
   result << "(" << at(0);
-  for (int i = 1; i < size(); i++)
+  for (auto i = 1; i < size(); i++)
     result << "," << at(i);
   return result.str() + ")";
 }

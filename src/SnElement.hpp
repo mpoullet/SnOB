@@ -37,7 +37,7 @@
 
 #include "Sn.hpp"
 
-class Sn::Element;
+// class Sn::Element;
 
 #include "Cycles.hpp"
 
@@ -48,7 +48,7 @@ public:
   Element(const Sn &_group) : n(_group.n) {
     p = new int[n];
     pinv = new int[n];
-    for (int i = 0; i < n; i++) {
+    for (auto i = 0; i < n; i++) {
       p[i] = i + 1;
       pinv[i] = i + 1;
     }
@@ -57,7 +57,7 @@ public:
   Element(const int _n) : n(_n) {
     p = new int[n];
     pinv = new int[n];
-    for (int i = 0; i < n; i++) {
+    for (auto i = 0; i < n; i++) {
       p[i] = i + 1;
       pinv[i] = i + 1;
     }
@@ -68,9 +68,9 @@ public:
   Element(const int _n, int *v) : n(_n) {
     p = new int[n];
     pinv = new int[n];
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       p[i] = v[i];
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       pinv[p[i] - 1] = i + 1;
   }
 
@@ -92,22 +92,22 @@ public:
 
   vector<int> effect() const {
     vector<int> result;
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       result.push_back(pinv[i]);
     return result;
   }
   vector<int> ieffect() const {
     vector<int> result;
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       result.push_back(p[i]);
     return result;
   }
 
   Element *operator*(const Sn::Element &o) const {
     Element *result = new Element(n);
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       result->pinv[i] = pinv[o.pinv[i] - 1];
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       result->p[result->pinv[i] - 1] = i + 1;
     return result;
   }
@@ -120,7 +120,7 @@ public:
   string str() const {
     ostringstream result;
     result << "[ ";
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       result << p[i] << " ";
     result << "]";
     return result.str();

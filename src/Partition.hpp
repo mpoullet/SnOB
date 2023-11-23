@@ -49,8 +49,8 @@ public:
   Partition(const Sn::Element &sigma);
 
   int n() const {
-    int result = 0;
-    for (int i = 0; i < size(); i++)
+    auto result = 0;
+    for (auto i = 0; i < size(); i++)
       result += at(i);
     return result;
   };

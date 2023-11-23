@@ -47,7 +47,7 @@ Sn::Sn(const int _n) : n(_n) {
 
   subgroup = new Sn(n - 1);
 
-  for (int i = 0; i < subgroup->irreducibles.size(); i++) {
+  for (auto i = 0; i < subgroup->irreducibles.size(); i++) {
     Partition lambda(subgroup->irreducibles[i]->partition);
     if (lambda.size() == 1 ||
         lambda[lambda.size() - 1] < lambda[lambda.size() - 2]) {
@@ -63,7 +63,7 @@ Sn::Sn(const int _n) : n(_n) {
 }
 
 Sn::~Sn() {
-  for (int i = 0; i < irreducibles.size(); i++)
+  for (auto i = 0; i < irreducibles.size(); i++)
     delete irreducibles[i];
   if (n > 1)
     delete subgroup;
@@ -71,7 +71,7 @@ Sn::~Sn() {
 
 Sn::Element *Sn::operator[](const int perm) const {
   int v[n];
-  for (int i = 1; i <= n; i++)
+  for (auto i = 1; i <= n; i++)
     v[i - 1] = i;
   int p = perm;
   for (int k = 2; k <= n; k++) {
@@ -79,7 +79,7 @@ Sn::Element *Sn::operator[](const int perm) const {
     p = (p - res) / k;
     int j = k - res;
     int t = v[k - 1];
-    for (int i = k - 1; i >= j; i--)
+    for (auto i = k - 1; i >= j; i--)
       v[i + 1 - 1] = v[i - 1];
     v[j - 1] = t;
   }
@@ -112,7 +112,7 @@ string Sn::str() {
 
 void Sn::branching(const vector<int> &rhos, vector<int> &result) const {
   set<int> resultset;
-  for (int i = 0; i < rhos.size(); i++) {
+  for (auto i = 0; i < rhos.size(); i++) {
     const vector<int> *etaindex = &(irreducibles[rhos[i]]->etaindex);
     for (int eta = 0; eta < etaindex->size(); eta++)
       resultset.insert((*etaindex)[eta]);

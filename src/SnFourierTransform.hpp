@@ -62,7 +62,7 @@ public:
 
   double norm2() const {
     double result;
-    for (int i = 0; i < matrix.size(); i++)
+    for (auto i = 0; i < matrix.size(); i++)
       result += 1;
     return result;
   }

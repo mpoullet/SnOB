@@ -46,7 +46,7 @@ template <class TYPE> class Matrix {
 public:
   Matrix(const int _n) : n(_n), m(_n) {
     array = new TYPE[n * m];
-    for (int i = 0; i < n * m; i++)
+    for (auto i = 0; i < n * m; i++)
       if (i % (n + 1) == 0)
         array[i] = 1;
       else
@@ -59,20 +59,20 @@ public:
 
   Matrix(const int _n, const int _m, const TYPE a) : n(_n), m(_m) {
     array = new TYPE[n * m];
-    for (int i = 0; i < n * m; i++)
+    for (auto i = 0; i < n * m; i++)
       array[i] = a;
   };
 
   Matrix(const TYPE **a, const int _n, const int _m) : n(_n), m(_m) {
     array = new TYPE[n * m];
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
         array[i * m + j] = a[i][j];
   }
 
   Matrix(const Matrix<TYPE> &o) : n(o.n), m(o.m) {
     array = new TYPE[n * m];
-    for (int i = 0; i < n * m; i++)
+    for (auto i = 0; i < n * m; i++)
       array[i] = o.array[i];
   };
 
@@ -97,7 +97,7 @@ public:
   Matrix<TYPE> &operator=(const Matrix<TYPE> &o);
 
   Matrix<TYPE> &fill(const TYPE &x) {
-    for (int i = 0; i < n * m; i++)
+    for (auto i = 0; i < n * m; i++)
       array[i] = x;
   }
 
@@ -106,14 +106,14 @@ public:
 
   TYPE trace() const {
     TYPE t = 0;
-    for (int i = 0; i < n; i++)
+    for (auto i = 0; i < n; i++)
       t += array[i * (n + 1)];
     return t;
   };
   // TYPE schur2(const Matrix<TYPE>& o) const;
   TYPE norm2() const {
     double result;
-    for (int i = 0; i < n * m; i++)
+    for (auto i = 0; i < n * m; i++)
       result += array[i] * array[i];
     return result;
   }
@@ -137,13 +137,13 @@ Matrix<TYPE>::Matrix(const int _n, const vector<Matrix<TYPE> *> &mlist)
   array = new TYPE[n * m];
   const int Nsummands = mlist.size();
   int total = 0;
-  for (int i = 0; i < Nsummands; i++)
+  for (auto i = 0; i < Nsummands; i++)
     total += mlist[i]->n;
   int filled = 0;
   for (int summand = 0; summand < Nsummands; summand++) {
     const int size = mlist[summand]->n;
     const int offset = filled * m;
-    for (int i = 0; i < size; i++) {
+    for (auto i = 0; i < size; i++) {
       for (int j = 0; j < filled; j++)
         array[offset + i * m + j] = 0;
       for (int j = 0; j < size; j++)
@@ -158,7 +158,7 @@ Matrix<TYPE>::Matrix(const int _n, const vector<Matrix<TYPE> *> &mlist)
 template <class TYPE> string Matrix<TYPE>::str() const {
   ostringstream result;
   result.precision(STR_PRECISION);
-  for (int i = 0; i < n; i++) {
+  for (auto i = 0; i < n; i++) {
     for (int j = 0; j < m; j++)
       result << array[i * m + j] << " ";
     result << "\n";
@@ -176,7 +176,7 @@ template <class TYPE> Matrix<TYPE> *Matrix<TYPE>::operator*(const TYPE &o) {
 
 template <class TYPE> Matrix<TYPE> *Matrix<TYPE>::operator*(Matrix<TYPE> &o) {
   Matrix<TYPE> *result = new Matrix(n, o.m);
-  for (int i = 0; i < n; i++)
+  for (auto i = 0; i < n; i++)
     for (int j = 0; j < o.m; j++) {
       TYPE t = 0;
       for (int k = 0; k < m; k++)
@@ -197,20 +197,20 @@ Matrix<TYPE> *Matrix<TYPE>::operator+(const Matrix<TYPE> &o) {
 
 template <class TYPE>
 Matrix<TYPE> &Matrix<TYPE>::operator+=(const Matrix<TYPE> &o) {
-  for (int i = 0; i < n * m; i++)
+  for (auto i = 0; i < n * m; i++)
     array[i] += o.array[i];
   return *this;
 }
 
 template <class TYPE>
 Matrix<TYPE> &Matrix<TYPE>::operator=(const Matrix<TYPE> &o) {
-  for (int i = 0; i < n * m; i++)
+  for (auto i = 0; i < n * m; i++)
     array[i] = o.array[i];
   return *this;
 }
 
 template <class TYPE> Matrix<TYPE> &Matrix<TYPE>::operator*=(const TYPE &mul) {
-  for (int i = 0; i < n * m; i++)
+  for (auto i = 0; i < n * m; i++)
     array[i] *= mul;
   return *this;
 }
@@ -259,7 +259,7 @@ template <class TYPE> Matrix<TYPE> *Matrix<TYPE>::pow(const int p) {
   if (p < 2)
     return new Matrix<TYPE>(*this);
   Matrix<TYPE> *result = (*this) * (*this);
-  for (int i = 2; i < p; i++) {
+  for (auto i = 2; i < p; i++) {
     Matrix<TYPE> *t = (*this) * (*result);
     delete result;
     result = t;
@@ -278,14 +278,14 @@ template <class TYPE> Matrix<TYPE>::Matrix(const string filename) {
     m++;
   }
   while (ifs.good()) {
-    for (int i = 0; i < m; i++)
+    for (auto i = 0; i < m; i++)
       ifs >> b;
     n++;
   }
   array = new TYPE[n * m];
   ifs.close();
   ifstream ifs2(filename.c_str());
-  for (int i = 0; i < n * m; i++) {
+  for (auto i = 0; i < n * m; i++) {
     ifs2 >> array[i];
     if (i % 10000 == 0) {
       cout << "*";
@@ -299,7 +299,7 @@ template <class TYPE> Matrix<TYPE>::Matrix(const string filename) {
 template <class TYPE> int Matrix<TYPE>::save(const string filename) {
   cout << "Saving " << filename << " ..." << endl;
   ofstream ofs(filename.c_str());
-  for (int i = 0; i < n; i++) {
+  for (auto i = 0; i < n; i++) {
     for (int j = 0; j < m; j++)
       ofs << " " << array[i * m + j];
     ofs << "\n";

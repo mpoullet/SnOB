@@ -60,7 +60,7 @@ Sn::Irreducible::Irreducible(const Sn *_group, const Partition &_partition)
 }
 
 //////////////////////////////////////////////////////////////////////////
-///TABLEAU STUFF
+/// TABLEAU STUFF
 
 StandardTableau *Sn::Irreducible::tableau(const int T) const {
   if (tableauxComputed)
@@ -95,7 +95,7 @@ void Sn::Irreducible::computeTableaux() {
 }
 
 //////////////////////////////////////////////////////////////////////// YOUNG
-///ORTHOGONAL STUFF
+/// ORTHOGONAL STUFF
 
 int Sn::Irreducible::YoungOrthogonalCoefficients(const int tau, const int T,
                                                  double &c1, double &c2) const {
@@ -112,8 +112,8 @@ int Sn::Irreducible::YoungOrthogonalCoefficients(const int tau, const int T,
     int distance;
     // Below Tdash is changed and distance is passed by reference and changed
     if (Tdash.applyTransposition(
-            tau, distance)) {          // Case 1: result is linear combination
-      for (int i = 0; i < degree; i++) // find the index of Tdash...
+            tau, distance)) {           // Case 1: result is linear combination
+      for (auto i = 0; i < degree; i++) // find the index of Tdash...
         if (Tdash == tableauV[i]) {
           result = i;
           break;
@@ -131,8 +131,8 @@ int Sn::Irreducible::YoungOrthogonalCoefficients(const int tau, const int T,
   int distance;
   // Below Tdash is changed and distance is passed by reference and changed
   if (Tdash->applyTransposition(
-          tau, distance)) {            // Case 1: result is linear combination
-    for (int i = 0; i < degree; i++) { // find the index of Tdash...
+          tau, distance)) {             // Case 1: result is linear combination
+    for (auto i = 0; i < degree; i++) { // find the index of Tdash...
       StandardTableau *Ti = tableau(i);
       if (*Tdash == *Ti) {
         result = i;
@@ -167,17 +167,17 @@ void Sn::Irreducible::computeYOR() {
 }
 
 ///////////////////////////////////////////////////////////////////////// MATRIX
-///STUFF
+/// STUFF
 
 Matrix<FIELD> *Sn::Irreducible::rho(const Sn::Element &p) {
   Matrix<FIELD> *result = new Matrix<FIELD>(degree);
   int v[n];
-  for (int i = 1; i <= n; i++)
+  for (auto i = 1; i <= n; i++)
     v[i - 1] = i;
   for (int m = n; m > 0; m--) {
     int j = p.iaction(m);
     applyCycleL(v[j - 1], *result, m, 1); // get v[j-1] into place at end
-    for (int i = j + 1; i <= n; i++)
+    for (auto i = j + 1; i <= n; i++)
       v[i - 1]--;
   }
   return result;
@@ -215,10 +215,10 @@ void Sn::Irreducible::applyCycleL(const int j, Matrix<FIELD> &M, int m,
             c2; // Warning: result is returned in these arguments below!!!
         const int Tdash = YoungOrthogonalCoefficients(tau, T, c1, c2);
         if (Tdash == -1)
-          for (int i = T * degree; i < T * degree + degree; i++)
+          for (auto i = T * degree; i < T * degree + degree; i++)
             array[i] = c1 * array[i];
         else {
-          for (int i = 0; i < degree; i++) {
+          for (auto i = 0; i < degree; i++) {
             FIELD temp = M(T, i);
             M(T, i) = c1 * temp + c2 * M(Tdash, i);
             M(Tdash, i) = -c1 * M(Tdash, i) + c2 * temp;
@@ -251,10 +251,10 @@ void Sn::Irreducible::applyCycleR(const int j, Matrix<FIELD> &M, int m,
             c2; // Warning: result is returned in these arguments below!!!
         const int Tdash = YoungOrthogonalCoefficients(tau, T, c1, c2);
         if (Tdash == -1)
-          for (int i = T; i <= T + degree * (degree - 1); i += degree)
+          for (auto i = T; i <= T + degree * (degree - 1); i += degree)
             array[i] = c1 * array[i];
         else {
-          for (int i = 0; i < degree; i++) {
+          for (auto i = 0; i < degree; i++) {
             FIELD temp = M(T, i);
             M(T, i) = c1 * temp + c2 * M(Tdash, i);
             M(Tdash, i) = -c1 * M(Tdash, i) + c2 * temp;
@@ -283,10 +283,10 @@ void Sn::Irreducible::applyTransposition(const int j, Matrix<FIELD> &M) {
             c2; // Warning: result is returned in these arguments below!!!
         const int Tdash = YoungOrthogonalCoefficients(tau, T, c1, c2);
         if (Tdash == -1) {
-          for (int i = 0; i < degree; i++)
+          for (auto i = 0; i < degree; i++)
             M(T, i) = c1 * M(T, i);
         } else {
-          for (int i = 0; i < degree; i++) {
+          for (auto i = 0; i < degree; i++) {
             FIELD temp = M(T, i);
             M(T, i) = c1 * temp + c2 * M(Tdash, i);
             M(Tdash, i) = -c1 * M(Tdash, i) + c2 * temp;
@@ -315,10 +315,10 @@ void Sn::Irreducible::applyTranspositionR(const int j, Matrix<FIELD> &M) {
             c2; // Warning: result is returned in these arguments below!!!
         const int Tdash = YoungOrthogonalCoefficients(tau, T, c1, c2);
         if (Tdash == -1) {
-          for (int i = 0; i < degree; i++)
+          for (auto i = 0; i < degree; i++)
             M(i, T) = c1 * M(i, T);
         } else {
-          for (int i = 0; i < degree; i++) {
+          for (auto i = 0; i < degree; i++) {
             FIELD temp = M(i, T);
             M(i, T) = c1 * temp + c2 * M(i, Tdash);
             M(i, Tdash) = -c1 * M(i, Tdash) + c2 * temp;
@@ -331,7 +331,7 @@ void Sn::Irreducible::applyTranspositionR(const int j, Matrix<FIELD> &M) {
 }
 
 //////////////////////////////////////////////////////////////////////////////
-///MISC
+/// MISC
 
 string Sn::Irreducible::str() {
   ostringstream result;

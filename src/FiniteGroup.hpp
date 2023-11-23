@@ -64,7 +64,7 @@ class FiniteGroup::Function {
 public:
   double norm() const {
     double result = 0;
-    for (int i = 0; i < order; i++)
+    for (auto i = 0; i < order; i++)
       result += 0 /*complex<double>::norm(f[i])*/;
     return sqrt(result);
   }
