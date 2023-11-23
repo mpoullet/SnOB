@@ -33,8 +33,8 @@
 #include "SnElement.hpp"
 #include "SnIrreducible.hpp"
 
-#include <sstream>
 #include <cassert>
+#include <sstream>
 
 Sn::Sn(const int _n) : n(_n) {
 

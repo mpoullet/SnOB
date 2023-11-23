@@ -36,7 +36,8 @@
 #include <sstream>
 
 Sn::Irreducible::Irreducible(const Sn *_group, const Partition &_partition)
-    : tableauxComputed(0), YORComputed(0), partition(_partition), n(_group->n), group(_group) {
+    : tableauxComputed(0), YORComputed(0), partition(_partition), n(_group->n),
+      group(_group) {
   if (n == 1) {
     tableauV.push_back(StandardTableau(partition));
     tableauxComputed = 1;

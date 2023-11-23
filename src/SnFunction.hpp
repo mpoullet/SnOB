@@ -65,4 +65,3 @@ private:
 
   const Sn *group;
 };
-

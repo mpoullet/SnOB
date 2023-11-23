@@ -49,7 +49,8 @@ public:
   friend class Sn::Ftree;
 
   FourierTransform(const Sn &_group);
-  FourierTransform(const Sn &_group, [[maybe_unused]] int dummy) : n(_group.n), group(&_group) { };
+  FourierTransform(const Sn &_group, [[maybe_unused]] int dummy)
+      : n(_group.n), group(&_group){};
   FourierTransform(const Sn &_group, const vector<Matrix<FIELD> *> matrices);
   FourierTransform(const Function &f);
   ~FourierTransform();

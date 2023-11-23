@@ -33,8 +33,8 @@
 #include "SnFourierTransform.hpp"
 #include "SnIrreducible.hpp"
 
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
 Sn::FourierTransform::FourierTransform(const Sn &_group)
     : n(_group.n), group(&_group) {

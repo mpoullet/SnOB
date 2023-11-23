@@ -45,7 +45,7 @@ using namespace std;
 // and each column are increasing. The set of standard tableau of shape p
 // label the basis vectors of the irreducible representation of shape p.
 
-class StandardTableau : public vector<vector<int> > {
+class StandardTableau : public vector<vector<int>> {
 public:
   // StandardTableau(vector<vector<int> > _r);
   // Initialize tableau with explicitly given entries
@@ -83,4 +83,3 @@ private:
   // Partition p;
   // vector<vector<int> > r; // The actual entries in the tableau
 };
-

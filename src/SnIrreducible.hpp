@@ -102,4 +102,3 @@ private:
   double *coeff1;
   double *coeff2;
 };
-

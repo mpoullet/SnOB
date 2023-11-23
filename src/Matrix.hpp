@@ -305,4 +305,3 @@ template <class TYPE> int Matrix<TYPE>::save(const string filename) {
   }
   ofs.close();
 }
-

@@ -52,8 +52,8 @@ Sn::Ftree::Ftree(const Sn &_group, const int _left, const int _right)
 
 Sn::Ftree::Ftree(const Sn &_group, const vector<int> &_Iindex, const int _left,
                  const int _right)
-    : n(_group.n), group(&_group), left(_left), right(_right), 
-      protect(0), addto(0), Iindex(_Iindex) {
+    : n(_group.n), group(&_group), left(_left), right(_right), protect(0),
+      addto(0), Iindex(_Iindex) {
   if (left == -1)
     left = n + 1;
   if (right == -1)
@@ -63,7 +63,8 @@ Sn::Ftree::Ftree(const Sn &_group, const vector<int> &_Iindex, const int _left,
 
 Sn::Ftree::Ftree(const Sn *_group, const vector<int> &_Iindex,
                  const vector<Ftree *> &_child)
-    : n(_group->n), group(_group), protect(0), addto(0), child(_child), Iindex(_Iindex) {
+    : n(_group->n), group(_group), protect(0), addto(0), child(_child),
+      Iindex(_Iindex) {
   left = n + 1;
   right = n + 1;
   // handedness=0;
@@ -122,8 +123,8 @@ Sn::Ftree::Ftree(const FourierTransform &F, int l1, int l2, ...)
 }
 
 Sn::Ftree::Ftree(const FourierTransform &F, const vector<int> &_Iindex)
-    : n(F.group->n), group(F.group), left(0), right(0),
-      protect(0), addto(0), Iindex(_Iindex) {
+    : n(F.group->n), group(F.group), left(0), right(0), protect(0), addto(0),
+      Iindex(_Iindex) {
   for (unsigned i = 0; i < Iindex.size(); i++)
     matrix.push_back(new Matrix<FIELD>(*F.matrix[Iindex[i]]));
 }
@@ -434,7 +435,7 @@ double Sn::Ftree::max(vector<int> &result, double maxsofar) {
     child.push_back(new Ftree(*group->subgroup, subIindex, i + 1));
   distribute();
 
-  vector<pair<int, double> > norms;
+  vector<pair<int, double>> norms;
   for (auto i = 0; i < n; i++)
     norms.push_back(pair<int, double>(i, child[i]->norm2()));
   sort(norms.begin(), norms.end(), paircomparison);
