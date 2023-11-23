@@ -30,9 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-
-#ifndef _Snh
-#define _Snh
+#pragma once
 
 #include <sstream>
 #include <iostream>
@@ -44,5 +42,3 @@
 #define FIELD double
 //#define FIELD complex<double>
 #define STR_PRECISION 3
-
-#endif

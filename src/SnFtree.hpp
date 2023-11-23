@@ -29,9 +29,7 @@
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-#ifndef _SnFtree
-#define _SnFtree
+#pragma once
 
 #include <set>
 #include <sstream>
@@ -101,5 +99,3 @@ public:
   vector<int> Iindex;
   vector<Matrix<FIELD> *> matrix;
 };
-
-#endif

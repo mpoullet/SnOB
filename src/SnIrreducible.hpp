@@ -29,9 +29,7 @@
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-#ifndef _Irreducible
-#define _Irreducible
+#pragma once
 
 #include <string>
 
@@ -105,4 +103,3 @@ private:
   double *coeff2;
 };
 
-#endif

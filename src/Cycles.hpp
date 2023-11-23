@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _Cycles
-#define _Cycles
+#pragma once
 
 #include <string>
 #include <vector>
@@ -49,4 +48,3 @@ public:
   string str();
 };
 
-#endif

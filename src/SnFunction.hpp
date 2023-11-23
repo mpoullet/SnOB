@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _SnFunction
-#define _SnFunction
+#pragma once
 
 #include <vector>
 
@@ -67,4 +66,3 @@ private:
   const Sn *group;
 };
 
-#endif

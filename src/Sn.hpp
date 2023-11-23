@@ -1,5 +1,4 @@
-#ifndef _Sn
-#define _Sn
+#pragma once
 
 #include <set>
 #include <sstream>
@@ -37,5 +36,3 @@ public:
   Sn *subgroup;
   vector<Irreducible *> irreducibles;
 };
-
-#endif

@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _StandardTableau
-#define _StandardTableau
+#pragma once
 
 #include <string>
 #include <vector>
@@ -85,4 +84,3 @@ private:
   // vector<vector<int> > r; // The actual entries in the tableau
 };
 
-#endif

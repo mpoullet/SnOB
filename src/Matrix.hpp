@@ -29,9 +29,7 @@
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-#ifndef _Matrix
-#define _Matrix
+#pragma once
 
 #include <fstream>
 #include <sstream>
@@ -308,4 +306,3 @@ template <class TYPE> int Matrix<TYPE>::save(const string filename) {
   ofs.close();
 }
 
-#endif

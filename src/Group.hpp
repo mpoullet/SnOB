@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _Group
-#define _Group
+#pragma once
 
 class Group;
 
@@ -47,4 +46,3 @@ public:
 
 class Group::Irreducible {};
 
-#endif

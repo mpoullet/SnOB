@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _Partition
-#define _Partition
+#pragma once
 
 #include <string>
 #include <vector>
@@ -59,5 +58,3 @@ public:
 
   string str() const;
 };
-
-#endif

@@ -45,5 +45,5 @@ SnFiles: Partition.o StandardTableau.o Cycles.o SnElement.o SnIrreducible.o \
 
 all: SnFiles 
 
-clean: 
+clean:
 	rm *.o

@@ -29,9 +29,7 @@
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-#ifndef _FourierTransform
-#define _FourierTransform
+#pragma once
 
 #include <vector>
 
@@ -78,5 +76,3 @@ private:
   const int n;
   const Sn *group;
 };
-
-#endif

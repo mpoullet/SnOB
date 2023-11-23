@@ -29,9 +29,7 @@
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-#ifndef _FiniteGroup
-#define _FiniteGroup
+#pragma once
 
 #include <complex>
 
@@ -86,5 +84,3 @@ public:
 class FiniteGroup::Ftree {
 public:
 };
-
-#endif

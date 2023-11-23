@@ -30,8 +30,7 @@
 
 ----------------------------------------------------------------------------- */
 
-#ifndef _SnElement
-#define _SnElement
+#pragma once
 
 #include <vector>
 
@@ -130,5 +129,3 @@ private:
   int *p; // p=[\sigma^{-1}(1),....,\sigma^{-1}(n)]
   int *pinv;
 };
-
-#endif
