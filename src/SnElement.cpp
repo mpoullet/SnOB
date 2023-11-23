@@ -96,13 +96,13 @@ Sn::Element::Element(const vector<int> &factorization, const int _n) : n(_n) {
     pinv[p[i] - 1] = i + 1;
 }
 
-bool Sn::Element::operator==(const Sn::Element &o) {
+bool Sn::Element::operator==(const Sn::Element &o) const {
   if (n != o.n)
-    return 0;
+    return false;
   for (auto i = 0; i < n; i++)
     if (p[i] != o.p[i])
-      return 0;
-  return 1;
+      return false;
+  return true;
 }
 
 Sn::Element &Sn::Element::CcycleL(int j, int q) {

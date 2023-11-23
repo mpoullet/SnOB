@@ -52,8 +52,8 @@ Sn::Ftree::Ftree(const Sn &_group, const int _left, const int _right)
 
 Sn::Ftree::Ftree(const Sn &_group, const vector<int> &_Iindex, const int _left,
                  const int _right)
-    : n(_group.n), group(&_group), left(_left), right(_right), Iindex(_Iindex),
-      protect(0), addto(0) {
+    : n(_group.n), group(&_group), left(_left), right(_right), 
+      protect(0), addto(0), Iindex(_Iindex) {
   if (left == -1)
     left = n + 1;
   if (right == -1)
@@ -63,15 +63,14 @@ Sn::Ftree::Ftree(const Sn &_group, const vector<int> &_Iindex, const int _left,
 
 Sn::Ftree::Ftree(const Sn *_group, const vector<int> &_Iindex,
                  const vector<Ftree *> &_child)
-    : group(_group), n(_group->n), Iindex(_Iindex), protect(0), addto(0),
-      child(_child) {
+    : n(_group->n), group(_group), protect(0), addto(0), child(_child), Iindex(_Iindex) {
   left = n + 1;
   right = n + 1;
   // handedness=0;
 }
 
 Sn::Ftree::Ftree(const Function &f)
-    : group(f.group), n(f.group->n), left(0), right(0), protect(0), addto(0) {
+    : n(f.group->n), group(f.group), left(0), right(0), protect(0), addto(0) {
   const int suborder = group->order / n;
   if (n > 1)
     for (auto i = 1; i <= n; i++) {
@@ -109,7 +108,7 @@ Sn::Ftree::Ftree(const Sn &_group, const int _left, const Function &f,
 }
 
 Sn::Ftree::Ftree(const FourierTransform &F, int l1, int l2, ...)
-    : group(F.group), n(F.group->n), left(0), right(0), protect(0), addto(0) {
+    : n(F.group->n), group(F.group), left(0), right(0), protect(0), addto(0) {
   Iindex.push_back(l1);
   int arg = l2;
   va_list params;
@@ -123,8 +122,8 @@ Sn::Ftree::Ftree(const FourierTransform &F, int l1, int l2, ...)
 }
 
 Sn::Ftree::Ftree(const FourierTransform &F, const vector<int> &_Iindex)
-    : group(F.group), n(F.group->n), left(0), right(0), Iindex(_Iindex),
-      protect(0), addto(0) {
+    : n(F.group->n), group(F.group), left(0), right(0),
+      protect(0), addto(0), Iindex(_Iindex) {
   for (unsigned i = 0; i < Iindex.size(); i++)
     matrix.push_back(new Matrix<FIELD>(*F.matrix[Iindex[i]]));
 }
@@ -230,7 +229,7 @@ void Sn::Ftree::unscout() {
 void Sn::Ftree::collect() { // Recursive function for moving up the tree by FT,
                             // depth first
 
-  for (int kidix = 0; kidix < child.size(); kidix++) {
+  for (unsigned kidix = 0; kidix < child.size(); kidix++) {
     Ftree &kid = *child[kidix];
     if (kid.child.size() > 0) {
       // group->branching(Iindex,kid.Iindex); // no scouting needed WHY NOT?????
@@ -253,12 +252,12 @@ void Sn::Ftree::collect() { // Recursive function for moving up the tree by FT,
     // Matrix<FIELD >* M=matrix[rhoix];
     // new Matrix<FIELD >(degree,degree,0);
 
-    for (int kidix = 0; kidix < child.size(); kidix++) {
+    for (unsigned kidix = 0; kidix < child.size(); kidix++) {
       Ftree &kid = *child[kidix];
 
       bool nonzero = 0; // check for case that kid does not contribute at all
       vector<int> subix;
-      for (int etai = 0; etai < rho->etaindex.size(); etai++) {
+      for (unsigned etai = 0; etai < rho->etaindex.size(); etai++) {
         int s = kid.component(rho->etaindex[etai]);
         subix.push_back(s);
         if (s >= 0)
@@ -269,7 +268,7 @@ void Sn::Ftree::collect() { // Recursive function for moving up the tree by FT,
         Matrix<FIELD> tildef(degree, degree);
         int offset = 0;
         int completed = 0;
-        for (int etai = 0; etai < rho->etaindex.size(); etai++) {
+        for (unsigned etai = 0; etai < rho->etaindex.size(); etai++) {
           int subdegree =
               group->subgroup->irreducibles[rho->etaindex[etai]]->degree;
           if (subix[etai] >= 0) {
@@ -316,17 +315,17 @@ void Sn::Ftree::distribute() { // Recursive fn for moving down the tree by iFT,
   // for (int i=0; i<Iindex.size(); i++) cout<<Iindex[i]<<" ";
   // cout<<endl;
 
-  for (int kidix = 0; kidix < child.size(); kidix++) {
+  for (unsigned kidix = 0; kidix < child.size(); kidix++) {
     Ftree &kid = *child[kidix];
 
     kid.dirty();
 
-    for (int rhoindex = 0; rhoindex < Iindex.size(); rhoindex++) {
+    for (unsigned rhoindex = 0; rhoindex < Iindex.size(); rhoindex++) {
       Sn::Irreducible *rho = group->irreducibles[Iindex[rhoindex]];
 
       bool nonzero = 0; // check for case that kid does not get anything at all
       vector<int> subix;
-      for (int etai = 0; etai < rho->etaindex.size(); etai++) {
+      for (unsigned etai = 0; etai < rho->etaindex.size(); etai++) {
         int s = kid.component(rho->etaindex[etai]);
         subix.push_back(s);
         if (s >= 0)
@@ -340,7 +339,7 @@ void Sn::Ftree::distribute() { // Recursive fn for moving down the tree by iFT,
                                     // will take engineering
         rho->applyTranspositionR(kid.right, M);
         int offset = 0;
-        for (int etai = 0; etai < rho->etaindex.size(); etai++) {
+        for (unsigned etai = 0; etai < rho->etaindex.size(); etai++) {
           if (subix[etai] >= 0) {
             Matrix<FIELD> &Msub = *kid.matrix[subix[etai]];
             const int degree = Msub.n;
@@ -447,7 +446,7 @@ double Sn::Ftree::max(vector<int> &result, double maxsofar) {
       // result=subresult;
       result.clear(); // inneficient!!!
       result.push_back(norms[i].first + 1);
-      for (int j = 0; j < subresult.size(); j++)
+      for (unsigned j = 0; j < subresult.size(); j++)
         result.push_back(subresult[j]);
     }
     if (norms[i].second <= maxsofar)

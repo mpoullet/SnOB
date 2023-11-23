@@ -83,7 +83,7 @@ public:
     delete[] pinv;
   }
 
-  bool operator==(const Sn::Element &o);
+  bool operator==(const Sn::Element &o) const;
 
   int action(const int i) const { return pinv[i - 1]; }
   int iaction(const int i) const { return p[i - 1]; }

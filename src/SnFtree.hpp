@@ -83,7 +83,7 @@ public:
   int component(const int rho) const;
 
   string str() const;
-  void Sn::Ftree::printtree(const string indent) const;
+  void printtree(const string indent) const;
 
 private:
   void str_recurse(ostringstream &stream, Sn::Element L, Sn::Element R) const;
