@@ -42,7 +42,7 @@ class Cycles;
 
 #include "SnElement.hpp"
 
-class Cycles : vector<vector<int>> {
+class Cycles : vector<vector<int> > {
 public:
   Cycles(const Sn::Element &p);
 

@@ -55,7 +55,7 @@ Cycles::Cycles(const Sn::Element &p) {
 
 string Cycles::str() {
   ostringstream result;
-  for (vector<vector<int>>::iterator it = begin(); it != end(); it++) {
+  for (vector<vector<int> >::iterator it = begin(); it != end(); it++) {
     result << "(";
     vector<int>::iterator it1 = it->begin();
     if (it1 != it->end()) {

@@ -1,5 +1,6 @@
-CFLAGS = -I ../src 
+CFLAGS = -I ../src -Wall -Werror -Wextra -Og -std=c++20 -fsanitize=address -Wc++11-extensions
 LIBS = -lstdc++ -lm
+# CXXFLAGS := 
 
 example1: example1.cpp ../src/Sn.o 
 	gcc -o example1 example1.cpp ../src/*.o $(CFLAGS) $(LIBS)

@@ -435,7 +435,7 @@ double Sn::Ftree::max(vector<int> &result, double maxsofar) {
     child.push_back(new Ftree(*group->subgroup, subIindex, i + 1));
   distribute();
 
-  vector<pair<int, double>> norms;
+  vector<pair<int, double> > norms;
   for (auto i = 0; i < n; i++)
     norms.push_back(pair<int, double>(i, child[i]->norm2()));
   sort(norms.begin(), norms.end(), paircomparison);

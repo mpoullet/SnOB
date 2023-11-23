@@ -120,7 +120,7 @@ bool StandardTableau::applyTransposition(int t, int &distance) {
 
 string StandardTableau::str() {
   ostringstream result;
-  for (vector<vector<int>>::iterator it = begin(); it != end(); it++) {
+  for (vector<vector<int> >::iterator it = begin(); it != end(); it++) {
     for (vector<int>::iterator it2 = it->begin(); it2 != it->end(); it2++)
       result << *it2 << " ";
     result << endl;

@@ -167,9 +167,9 @@ template <class TYPE> string Matrix<TYPE>::str() const {
 }
 
 template <class TYPE> Matrix<TYPE> *Matrix<TYPE>::operator*(const TYPE &o) {
-  result = new Matrix(n, m);
-  for (i = 0; i < n; i++)
-    for (j = 0; j < m; j++)
+  auto result = new Matrix(n, m);
+  for (auto i = 0; i < n; i++)
+    for (auto j = 0; j < m; j++)
       result->at(i, j) = o * at(i, j);
   return result;
 }
@@ -188,9 +188,9 @@ template <class TYPE> Matrix<TYPE> *Matrix<TYPE>::operator*(Matrix<TYPE> &o) {
 
 template <class TYPE>
 Matrix<TYPE> *Matrix<TYPE>::operator+(const Matrix<TYPE> &o) {
-  result = new Matrix(n, m);
-  for (i = 0; i < n; i++)
-    for (j = 0; j < m; j++)
+  auto result = new Matrix(n, m);
+  for (auto i = 0; i < n; i++)
+    for (auto j = 0; j < m; j++)
       result->at(i, j) = o.at(i, j) + at(i, j);
   return result;
 }

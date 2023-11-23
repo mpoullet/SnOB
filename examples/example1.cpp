@@ -16,5 +16,7 @@ int main() {
   cout<<"p2^{-1}     : "<<b->str()<<endl;
   cout<<"(p2^{-1})*p1: "<<c->str()<<endl;
   
-  delete a,b,c;
+  delete a;
+  delete b;
+  delete c;
 }
