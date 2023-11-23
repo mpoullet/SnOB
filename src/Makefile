@@ -37,8 +37,6 @@ Sn.o: Sn.cpp Sn.hpp SnElement.hpp StandardTableau.hpp Partition.hpp FiniteGroup.
 testSnFtree: testSnFtree.cpp Sn.o SnFtree.o SnFourierTransform.o SnFunction.o SnIrreducible.o StandardTableau.o Partition.o SnElement.o 
 	gcc -o testSnFtree testSnFtree.cpp *.o $(CFLAGS) $(LIBS) 
 
-
-
 SnFiles: Partition.o StandardTableau.o Cycles.o SnElement.o SnIrreducible.o \
 	SnFunction.o SnFourierTransform.o SnFtree.o Sn.o 
 

@@ -42,14 +42,7 @@ using namespace std;
 
 class Sn::Element : public FiniteGroup::Element {
 public:
-  Element(const Sn &_group) : n(_group.n) {
-    p = new int[n];
-    pinv = new int[n];
-    for (auto i = 0; i < n; i++) {
-      p[i] = i + 1;
-      pinv[i] = i + 1;
-    }
-  }
+  Element(const Sn &_group) : Element(_group.n) { }
 
   Element(const int _n) : n(_n) {
     p = new int[n];
