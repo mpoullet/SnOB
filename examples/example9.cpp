@@ -4,7 +4,7 @@
 
 int main() {
   
-  Sn::Sn G(4);
+  Sn G(4);
 
   Sn::Function f(G);
   f.randomize();
@@ -24,7 +24,10 @@ int main() {
       Sn::Element* xinv=x->inverse();
       Sn::Element* y=(*z)*(*xinv); 
       hdash[*z]+=g[*y]*f[*x];
-      delete x,xinv,y,z;
+      delete x;
+      delete xinv;
+      delete y;
+      delete z;
     }
 
   cout<<hdash.str()<<endl;

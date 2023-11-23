@@ -4,7 +4,7 @@
 
 int main() {
   
-  Sn::Sn G(3);
+  Sn G(3);
 
   for (int i=0; i<G.order; i++)
     cout<<G[i]->str()<<endl;

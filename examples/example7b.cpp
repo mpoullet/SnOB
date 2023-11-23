@@ -3,7 +3,7 @@
 
 int main() {
   
-  Sn::Sn G(5);
+  Sn G(5);
   Sn::Irreducible& rho=*G.irreducibles[2];
 
   Sn::Element sigma1(1,2,4,3,5,NULL);

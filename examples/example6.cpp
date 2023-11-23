@@ -14,7 +14,7 @@ string printAncestors(Sn::Irreducible& rho, string indenter){
 
 int main() {
   
-  Sn::Sn G(5);
+  Sn G(5);
 
   for (unsigned i=0; i<G.irreducibles.size(); i++)
     cout<<printAncestors(*G.irreducibles[i],"");
