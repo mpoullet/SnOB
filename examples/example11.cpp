@@ -11,7 +11,7 @@ int main() {
   cout<<Sn::FourierTransform(f).str()<<endl;
 
   Sn::Ftree fsparse(f);
-  for(int i=0; i<G.irreducibles.size(); i++)
+  for (unsigned i=0; i<G.irreducibles.size(); i++)
     fsparse.Iindex.push_back(i);
 
   fsparse.FFT();

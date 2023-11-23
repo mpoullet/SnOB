@@ -40,7 +40,7 @@ StandardTableau::StandardTableau(const Partition &_p) {
   // n=p.N();
   // nrows=_p.size();
   int c = 1;
-  for (auto i = 0; i < _p.size(); i++) {
+  for (unsigned i = 0; i < _p.size(); i++) {
     vector<int> s;
     for (int j = 0; j < _p[i]; j++)
       s.push_back(c++);
@@ -64,15 +64,15 @@ StandardTableau::StandardTableau(int y1, ...) {
 
 Partition StandardTableau::shape() const {
   Partition result;
-  for (auto i = 0; i < size(); i++)
+  for (unsigned i = 0; i < size(); i++)
     result.push_back((*this)[i].size());
   return result;
 }
 
 StandardTableau &StandardTableau::growTo(const Partition &p) {
-  int n = p.n();
-  for (auto i = 0; i < size(); i++)
-    if ((*this)[i].size() + 1 == p[i]) {
+  unsigned n = p.n();
+  for (unsigned i = 0; i < size(); i++)
+    if ((*this)[i].size() + 1 == (unsigned)p[i]) {
       (*this)[i].push_back(n);
       return *this;
     }
@@ -86,8 +86,8 @@ StandardTableau &StandardTableau::growTo(const Partition &p) {
 bool StandardTableau::applyTransposition(int t, int &distance) {
   int ai = -1; // Find t in tableau...
   int aj;
-  for (auto i = 0; ai < 0 && i < size(); i++)
-    for (int j = 0; j < (*this)[i].size(); j++)
+  for (unsigned i = 0; ai < 0 && i < size(); i++)
+    for (unsigned j = 0; j < (*this)[i].size(); j++)
       if ((*this)[i][j] == t) {
         ai = i;
         aj = j;
@@ -96,8 +96,8 @@ bool StandardTableau::applyTransposition(int t, int &distance) {
 
   int bi = -1; // Find t in tableau...
   int bj;
-  for (auto i = 0; bi < 0 && i < size(); i++)
-    for (int j = 0; j < (*this)[i].size(); j++)
+  for (unsigned i = 0; bi < 0 && i < size(); i++)
+    for (unsigned j = 0; j < (*this)[i].size(); j++)
       if ((*this)[i][j] == t + 1) {
         bi = i;
         bj = j;

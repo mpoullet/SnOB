@@ -84,8 +84,8 @@ string Sn::Function::str() const {
 
 Sn::Function *Sn::Function::convolve(const Sn::Function &o) const {
   Sn::Function *result = new Sn::Function(*group);
-  for (auto i = 0; i < order; i++)
-    for (int j = 0; j < order; j++) {
+  for (unsigned i = 0; i < order; i++)
+    for (unsigned j = 0; j < order; j++) {
       Sn::Element *z = (*(*group)[j]) * (*(*group)[i]);
       (*result)[*z] += o.f[i] * f[j];
       delete z;

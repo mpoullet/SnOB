@@ -34,6 +34,7 @@
 #include "SnIrreducible.hpp"
 
 #include <sstream>
+#include <cassert>
 
 Sn::Sn(const int _n) : n(_n) {
 
@@ -47,7 +48,7 @@ Sn::Sn(const int _n) : n(_n) {
 
   subgroup = new Sn(n - 1);
 
-  for (auto i = 0; i < subgroup->irreducibles.size(); i++) {
+  for (unsigned i = 0; i < subgroup->irreducibles.size(); i++) {
     Partition lambda(subgroup->irreducibles[i]->partition);
     if (lambda.size() == 1 ||
         lambda[lambda.size() - 1] < lambda[lambda.size() - 2]) {
@@ -63,7 +64,7 @@ Sn::Sn(const int _n) : n(_n) {
 }
 
 Sn::~Sn() {
-  for (auto i = 0; i < irreducibles.size(); i++)
+  for (unsigned i = 0; i < irreducibles.size(); i++)
     delete irreducibles[i];
   if (n > 1)
     delete subgroup;
@@ -84,7 +85,7 @@ Sn::Element *Sn::operator[](const int perm) const {
     v[j - 1] = t;
   }
   //  int suborder=1;
-  // for(int i=1; i<n; i++){
+  // for (int i=1; i<n; i++){
   //  suborder=suborder*i;
   //  int m=((int)(perm/suborder))%(i+1);
   //  int t=v[i];
@@ -102,6 +103,8 @@ Sn::Irreducible *Sn::irreducible(const Partition &p, int &index) {
       return &(**it); // very careful here!!!!
     index++;
   }
+  assert(false);
+  return nullptr;
 }
 
 string Sn::str() {
@@ -112,9 +115,9 @@ string Sn::str() {
 
 void Sn::branching(const vector<int> &rhos, vector<int> &result) const {
   set<int> resultset;
-  for (auto i = 0; i < rhos.size(); i++) {
+  for (unsigned i = 0; i < rhos.size(); i++) {
     const vector<int> *etaindex = &(irreducibles[rhos[i]]->etaindex);
-    for (int eta = 0; eta < etaindex->size(); eta++)
+    for (unsigned eta = 0; eta < etaindex->size(); eta++)
       resultset.insert((*etaindex)[eta]);
   }
   for (set<int>::iterator it = resultset.begin(); it != resultset.end(); it++)

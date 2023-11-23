@@ -37,8 +37,6 @@
 
 #include "Sn.hpp"
 
-// class Sn::Element;
-
 #include "Cycles.hpp"
 
 using namespace std;

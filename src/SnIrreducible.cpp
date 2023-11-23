@@ -36,8 +36,8 @@
 #include <sstream>
 
 Sn::Irreducible::Irreducible(const Sn *_group, const Partition &_partition)
-    : group(_group), partition(_partition), n(_group->n), tableauxComputed(0),
-      YORComputed(0) {
+    : tableauxComputed(0), YORComputed(0), partition(_partition), n(_group->n), group(_group)
+      {
   if (n == 1) {
     tableauV.push_back(StandardTableau(partition));
     tableauxComputed = 1;
@@ -65,9 +65,9 @@ Sn::Irreducible::Irreducible(const Sn *_group, const Partition &_partition)
 StandardTableau *Sn::Irreducible::tableau(const int T) const {
   if (tableauxComputed)
     return new StandardTableau(tableauV[T]);
-  StandardTableau *result;
+  StandardTableau *result = nullptr;
   int t = T;
-  for (int etaix = 0; etaix < eta.size(); etaix++) {
+  for (unsigned etaix = 0; etaix < eta.size(); etaix++) {
     Sn::Irreducible *etap = eta[etaix];
     t -= etap->degree;
     if (t < 0) {
@@ -82,7 +82,7 @@ StandardTableau *Sn::Irreducible::tableau(const int T) const {
 void Sn::Irreducible::computeTableaux() {
   if (tableauxComputed)
     return;
-  for (int etaix = 0; etaix < eta.size(); etaix++) {
+  for (unsigned etaix = 0; etaix < eta.size(); etaix++) {
     Sn::Irreducible *etap = eta[etaix];
     etap->computeTableaux();
     for (vector<StandardTableau>::iterator it = etap->tableauV.begin();
@@ -105,7 +105,7 @@ int Sn::Irreducible::YoungOrthogonalCoefficients(const int tau, const int T,
     c2 = coeff2[index];
     return tdash[index];
   }
-  int result;
+  int result = 0;
   // if(!tableauxComputed) computeTableaux();
   if (tableauxComputed) {
     StandardTableau Tdash = tableauV[T];
@@ -186,7 +186,7 @@ Matrix<FIELD> *Sn::Irreducible::rho(const Sn::Element &p) {
 FIELD Sn::Irreducible::character(const Partition &mu) {
   Matrix<FIELD> M(degree);
   int m = n;
-  for (int k = 0; k < mu.size(); k++) {
+  for (unsigned k = 0; k < mu.size(); k++) {
     if (mu[k] == 1)
       break;
     applyCycleL(m - mu[k] + 1, M, m);

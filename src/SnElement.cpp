@@ -68,7 +68,7 @@ Sn::Element::Element(const int _n, const vector<int> fixed) : n(_n) {
   pinv = new int[n];
   for (auto i = 0; i < n; i++)
     p[i] = i + 1;
-  for (int j = 0; j < fixed.size(); j++) {
+  for (unsigned j = 0; j < fixed.size(); j++) {
     for (auto i = 0; i < n; i++)
       if (p[i] == fixed[j]) {
         p[i] = p[n - 1 - j];
@@ -85,7 +85,7 @@ Sn::Element::Element(const vector<int> &factorization, const int _n) : n(_n) {
   pinv = new int[n];
   for (auto i = 0; i < n; i++)
     p[i] = i + 1;
-  for (int j = 0; j < factorization.size(); j++) {
+  for (unsigned j = 0; j < factorization.size(); j++) {
     // cout<<":"<<factorization[j];
     int t = p[n - 1 - j];
     p[n - 1 - j] = p[factorization[j] - 1];

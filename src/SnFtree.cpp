@@ -118,19 +118,19 @@ Sn::Ftree::Ftree(const FourierTransform &F, int l1, int l2, ...)
     Iindex.push_back(arg);
     arg = va_arg(params, int);
   }
-  for (auto i = 0; i < Iindex.size(); i++)
+  for (unsigned i = 0; i < Iindex.size(); i++)
     matrix.push_back(new Matrix<FIELD>(*F.matrix[Iindex[i]]));
 }
 
 Sn::Ftree::Ftree(const FourierTransform &F, const vector<int> &_Iindex)
     : group(F.group), n(F.group->n), left(0), right(0), Iindex(_Iindex),
       protect(0), addto(0) {
-  for (auto i = 0; i < Iindex.size(); i++)
+  for (unsigned i = 0; i < Iindex.size(); i++)
     matrix.push_back(new Matrix<FIELD>(*F.matrix[Iindex[i]]));
 }
 
 void Sn::Ftree::clean() {
-  for (auto i = 0; i < matrix.size(); i++)
+  for (unsigned i = 0; i < matrix.size(); i++)
     delete matrix[i];
   matrix.clear();
 }
@@ -144,14 +144,14 @@ void Sn::Ftree::dirty() {
 }
 
 void Sn::Ftree::deletedescendants() {
-  for (auto i = 0; i < child.size(); i++)
+  for (unsigned i = 0; i < child.size(); i++)
     delete child[i];
   child.clear();
 }
 
 void Sn::Ftree::copy(const Ftree &f) {
   clean();
-  for (int rhoix = 0; rhoix < Iindex.size(); rhoix++) {
+  for (unsigned rhoix = 0; rhoix < Iindex.size(); rhoix++) {
     int rhoixd = f.component(Iindex[rhoix]);
     if (rhoixd >= 0)
       matrix.push_back(new Matrix<FIELD>(*f.matrix[rhoixd]));
@@ -164,7 +164,7 @@ void Sn::Ftree::copy(const Ftree &f) {
 
 void Sn::Ftree::tcopy(const Ftree &f) { // Very dangerous!!!!
   clean();
-  for (int rhoix = 0; rhoix < Iindex.size(); rhoix++) {
+  for (unsigned rhoix = 0; rhoix < Iindex.size(); rhoix++) {
     int rhoixd = f.component(Iindex[rhoix]);
     if (rhoixd >= 0)
       matrix.push_back(f.matrix[rhoixd]);
@@ -244,7 +244,7 @@ void Sn::Ftree::collect() { // Recursive function for moving up the tree by FT,
   }
 
   // cout<<"Collect level "<<n<<", irreducibles: ";
-  // for(int i=0; i<Iindex.size(); i++) cout<<Iindex[i]<<" ";
+  // for (int i=0; i<Iindex.size(); i++) cout<<Iindex[i]<<" ";
   // cout<<endl;
 
   for (int rhoix = 0; rhoix < Iindex.size(); rhoix++) {
@@ -313,7 +313,7 @@ void Sn::Ftree::distribute() { // Recursive fn for moving down the tree by iFT,
                                // depth first
 
   //  cout<<"Distribute level "<<n<<", irreducibles: ";
-  // for(int i=0; i<Iindex.size(); i++) cout<<Iindex[i]<<" ";
+  // for (int i=0; i<Iindex.size(); i++) cout<<Iindex[i]<<" ";
   // cout<<endl;
 
   for (int kidix = 0; kidix < child.size(); kidix++) {
@@ -360,7 +360,7 @@ void Sn::Ftree::distribute() { // Recursive fn for moving down the tree by iFT,
       kid.distribute();
     else {
       // cout<<"Leaf level "<<kid.n<<", irreducibles: ";
-      // for(int i=0; i<kid.Iindex.size(); i++) cout<<kid.Iindex[i]<<" ";
+      // for (int i=0; i<kid.Iindex.size(); i++) cout<<kid.Iindex[i]<<" ";
       // cout<<endl;
     }
   }
@@ -401,7 +401,7 @@ Sn::Function *Sn::Ftree::function() {
 /// MISC
 
 int Sn::Ftree::component(const int rho) const {
-  for (auto i = 0; i < Iindex.size(); i++)
+  for (unsigned i = 0; i < Iindex.size(); i++)
     if (Iindex[i] == rho)
       return i;
   return -1;
@@ -409,7 +409,7 @@ int Sn::Ftree::component(const int rho) const {
 
 double Sn::Ftree::norm2() const {
   double result = 0;
-  for (auto i = 0; i < matrix.size(); i++)
+  for (unsigned i = 0; i < matrix.size(); i++)
     result += matrix[i]->norm2();
   return result;
 }
@@ -467,7 +467,7 @@ void Sn::Ftree::str_recurse(ostringstream &stream, Sn::Element L,
         stream << "Coset " << L.str() << " S_" << n << " " << R.str() << endl
                << endl;
       ;
-      for (auto i = 0; i < matrix.size(); i++)
+      for (unsigned i = 0; i < matrix.size(); i++)
         stream << group->irreducibles[Iindex[i]]->partition.str() << endl
                << matrix[i]->str() << endl;
     } else {
@@ -476,7 +476,7 @@ void Sn::Ftree::str_recurse(ostringstream &stream, Sn::Element L,
       delete sigma;
     }
   } else {
-    for (auto i = 0; i < child.size(); i++)
+    for (unsigned i = 0; i < child.size(); i++)
       child[i]->str_recurse(stream, Sn::Element(L).CcycleR(child[i]->left, n),
                             Sn::Element(R).CcycleL(child[i]->right, n));
   }
@@ -490,8 +490,8 @@ string Sn::Ftree::str() const {
 
 void Sn::Ftree::printtree(const string indent) const {
   cout << indent << "(" << left << "," << right << ")" << endl;
-  for (auto i = 0; i < matrix.size(); i++)
+  for (unsigned i = 0; i < matrix.size(); i++)
     cout << matrix[i]->str();
-  for (auto i = 0; i < child.size(); i++)
+  for (unsigned i = 0; i < child.size(); i++)
     child[i]->printtree(indent + "  ");
 }

@@ -12,7 +12,7 @@ main(int argc, char** argv){
   f[Sn::Element(2,3,1,4,5,NULL)]=7;
 
   Sn::Ftree fsparse(f);
-  for(int i=0; i<G.irreducibles.size() && i<m; i++)
+  for (int i=0; i<G.irreducibles.size() && i<m; i++)
     fsparse.Iindex.push_back(i);
 
   cout<<"The function:"<<endl<<endl;

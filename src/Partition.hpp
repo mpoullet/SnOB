@@ -50,7 +50,7 @@ public:
 
   int n() const {
     auto result = 0;
-    for (auto i = 0; i < size(); i++)
+    for (unsigned i = 0; i < size(); i++)
       result += at(i);
     return result;
   };

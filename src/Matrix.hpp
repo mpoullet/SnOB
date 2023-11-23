@@ -220,11 +220,11 @@ template <class TYPE>
 Matrix<TYPE>* Matrix<TYPE>::tensorproduct(const Matrix<TYPE>& o) const{
   Matrix<TYPE>* result=new Matrix<TYPE>(n*o.n,m*o.m);
   const int tt=m*o.m;
-  for(int a=0; a<o.n; a++)
-    for(int b=0; b<o.m; b++){
+  for (int a=0; a<o.n; a++)
+    for (int b=0; b<o.m; b++){
       const TYPE t=o.array[a*m+b];
-      for(int i=0; i<n; i++)
-        for(int j=0; j<m; j++)
+      for (int i=0; i<n; i++)
+        for (int j=0; j<m; j++)
           result->array[(i+n*a)*tt+j+m*b]=t*array[i*m+j];
     }
   return result;
@@ -235,10 +235,10 @@ template <class TYPE>
 Matrix<TYPE>* Matrix<TYPE>::tensorproduct(const int tn, const int tm) const{
   Matrix<TYPE>* result=new Matrix<TYPE>(n*tn,m*tm);
   const int tt=m*tm;
-  for(int a=0; a<tn; a++)
-    for(int b=0; b<tm; b++)
-      for(int i=0; i<n; i++)
-        for(int j=0; j<m; j++)
+  for (int a=0; a<tn; a++)
+    for (int b=0; b<tm; b++)
+      for (int i=0; i<n; i++)
+        for (int j=0; j<m; j++)
           result->array[(i+n*a)*tt+j+m*b]=array[i*m+j];
   return result;
 }
@@ -248,8 +248,8 @@ Matrix<TYPE>* Matrix<TYPE>::tensorproduct(const int tn, const int tm) const{
 template <class TYPE>
 TYPE Matrix<TYPE>::schur2(const Matrix<TYPE>& o) const{
   TYPE result;
-  for(int i=0; i<n; i++)
-    for(int j=0; j<m; j++)
+  for (int i=0; i<n; i++)
+    for (int j=0; j<m; j++)
       result+=array[i*m+j]*o.array[j*n+i];
   return result;
 }

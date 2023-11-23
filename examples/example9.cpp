@@ -17,8 +17,8 @@ int main() {
 
   Sn::Function hdash(G);
 
-  for(int i=0; i<G.order; i++)
-    for(int j=0; j<G.order; j++){
+  for (int i=0; i<G.order; i++)
+    for (int j=0; j<G.order; j++){
       Sn::Element* x=G[j]; 
       Sn::Element* z=G[i];
       Sn::Element* xinv=x->inverse();

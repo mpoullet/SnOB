@@ -8,7 +8,7 @@ int main() {
 
   Sn::Sn& Gsub=*G.subgroup->subgroup;
 
-  for(int i=0; i<Gsub.irreducibles.size(); i++)
+  for (unsigned i=0; i<Gsub.irreducibles.size(); i++)
     cout<<Gsub.irreducibles[i]->str()<<endl;
       
 }
