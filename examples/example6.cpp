@@ -12,7 +12,7 @@ string printAncestors(Sn::Irreducible& rho, string indenter){
 }
 
 
-main(){
+int main() {
   
   Sn::Sn G(5);
 

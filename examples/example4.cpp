@@ -2,7 +2,7 @@
 #include "SnIrreducible.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
   Sn::Sn G(5);
 

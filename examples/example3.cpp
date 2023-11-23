@@ -2,7 +2,7 @@
 #include "SnElement.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
   Sn::Sn G(3);
 

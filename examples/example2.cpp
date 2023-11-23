@@ -2,7 +2,7 @@
 #include "Cycles.hpp"
 #include <iostream>
 
-main(){
+int main() {
 
   Sn::Element p1(1,2,4,3,5,NULL);
   Sn::Element p2(2,3,1,4,5,NULL);

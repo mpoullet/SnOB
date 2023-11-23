@@ -2,7 +2,7 @@
 #include "SnFourierTransform.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
   Sn::Sn G(4);
 

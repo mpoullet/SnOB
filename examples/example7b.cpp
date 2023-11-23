@@ -1,7 +1,7 @@
 #include "SnIrreducible.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
   Sn::Sn G(5);
   Sn::Irreducible& rho=*G.irreducibles[2];

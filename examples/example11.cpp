@@ -1,6 +1,6 @@
 #include "SnFtree.hpp"
 
-main(){
+int main() {
   
   Sn::Sn G(4);
   Sn::Function f(G);
