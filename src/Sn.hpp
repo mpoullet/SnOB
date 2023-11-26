@@ -1,21 +1,20 @@
-#ifndef _Sn
-#define _Sn
+#pragma once
 
-#include <sstream>
 #include <set>
+#include <sstream>
 
 #include "FiniteGroup.hpp"
 
 class Sn;
 
-class Partition; 
+class Partition;
 
 using namespace std;
 
-class Sn: public FiniteGroup{
+class Sn : public FiniteGroup {
 public:
   class Element;
-  class Irreducible; 
+  class Irreducible;
   class Function;
   class FourierTransform;
   class PartialFT;
@@ -25,19 +24,15 @@ public:
   Sn(const int _n);
   ~Sn();
 
-  Element* operator[](const int i) const; 
+  Element *operator[](const int i) const;
 
-  Irreducible* irreducible(const Partition& p, int& index); 
+  Irreducible *irreducible(const Partition &p, int &index);
 
-  void branching(const vector<int>& rhos, vector<int>& result) const;
+  void branching(const vector<int> &rhos, vector<int> &result) const;
 
-  string str(); 
+  string str();
 
   const int n;
-  Sn* subgroup; 
-  vector<Irreducible*> irreducibles; 
-
+  Sn *subgroup;
+  vector<Irreducible *> irreducibles;
 };
-
-
-#endif

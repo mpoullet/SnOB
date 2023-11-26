@@ -2,11 +2,11 @@
 #include "SnIrreducible.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
-  Sn::Sn G(5);
+  Sn G(5);
 
-  for(int i=0; i<G.irreducibles.size(); i++)
+  for (unsigned i=0; i<G.irreducibles.size(); i++)
     cout<<G.irreducibles[i]->str()<<endl;
       
 }

@@ -1,7 +1,7 @@
 #include "SnElement.hpp"
 #include <iostream>
 
-main(){
+int main() {
 
   Sn::Element p1(1,2,4,3,5,NULL);
   Sn::Element p2(2,3,1,4,5,NULL);
@@ -16,5 +16,7 @@ main(){
   cout<<"p2^{-1}     : "<<b->str()<<endl;
   cout<<"(p2^{-1})*p1: "<<c->str()<<endl;
   
-  delete a,b,c;
+  delete a;
+  delete b;
+  delete c;
 }

@@ -17,94 +17,85 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
+#pragma once
 
-
-#ifndef _SnFtree
-#define _SnFtree
-
-#include<sstream>
-#include<vector>
-#include<set>
-#include<utility>
+#include <set>
+#include <sstream>
+#include <utility>
+#include <vector>
 
 #include "Matrix.hpp"
 
 #include "FiniteGroup.hpp"
 #include "Sn.hpp"
+#include "SnFourierTransform.hpp"
 #include "SnFunction.hpp"
 #include "SnIrreducible.hpp"
-#include "SnFourierTransform.hpp"
 
 using namespace std;
 
-class Sn::Ftree : FiniteGroup::Ftree{
+class Sn::Ftree : FiniteGroup::Ftree {
 public:
+  Ftree(const Sn &_group, const int _left = -1, const int _right = -1);
+  Ftree(const Sn &_group, const vector<int> &_Iindex, const int _left = -1,
+        const int _right = -1);
+  Ftree(const Sn *_group, const vector<int> &_Iindex,
+        const vector<Ftree *> &_child);
 
-  Ftree(const Sn& _group, const int _left=-1, const int _right=-1);
-  Ftree(const Sn& _group, const vector<int>& _Iindex, const int _left=-1, const int _right=-1);
-  Ftree(const Sn* _group, const vector<int>& _Iindex, const vector<Ftree*>& _child);
-
-  Ftree(const Function& f);
-  Ftree(const FourierTransform& F, int l1, int l2, ...);
-  Ftree(const FourierTransform& F, const vector<int>& _Iindex);
+  Ftree(const Function &f);
+  Ftree(const FourierTransform &F, int l1, int l2, ...);
+  Ftree(const FourierTransform &F, const vector<int> &_Iindex);
 
   ~Ftree();
 
   void FFT();
   void iFFT();
 
-  FourierTransform* fourierTransform();
-  Function* function();
-  double max(vector<int>& result, double maxsofar);
+  FourierTransform *fourierTransform();
+  Function *function();
+  double max(vector<int> &result, double maxsofar);
   double norm2() const;
 
   void clean();
   void dirty();
   void deletedescendants();
-  void copy(const Ftree& f);
-  void tcopy(const Ftree& f);
+  void copy(const Ftree &f);
+  void tcopy(const Ftree &f);
 
-  void scout(bool zerobottom=0);
+  void scout(bool zerobottom = 0);
   void unscout();
   void collect();
   void distribute();
   int component(const int rho) const;
 
   string str() const;
-  void Sn::Ftree::printtree(const string indent) const;
-  
-private:
+  void printtree(const string indent) const;
 
-  void str_recurse(ostringstream& stream, Sn::Element L, Sn::Element R) const;
-  Ftree(const Sn& _group, const int _left, const Function& f, const int offset);
-  
+private:
+  void str_recurse(ostringstream &stream, Sn::Element L, Sn::Element R) const;
+  Ftree(const Sn &_group, const int _left, const Function &f, const int offset);
+
 public:
-  
   int n;
-  const Sn* group;
+  const Sn *group;
   int left;
   int right;
   bool protect;
   bool addto;
 
-  vector<Ftree*> child;
+  vector<Ftree *> child;
   vector<int> Iindex;
-  vector<Matrix<FIELD >*> matrix;
-  
-
+  vector<Matrix<FIELD> *> matrix;
 };
-
-#endif
-

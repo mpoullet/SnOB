@@ -17,22 +17,19 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
-
-
-#ifndef _FiniteGroup
-#define _FiniteGroup
+#pragma once
 
 #include <complex>
 
@@ -44,7 +41,7 @@ class FiniteGroup;
 
 using namespace std;
 
-class FiniteGroup: public Group{
+class FiniteGroup : public Group {
 public:
   class Element;
   class Function;
@@ -55,44 +52,35 @@ public:
   int order;
 };
 
-// not having this defined causes the wrong constructor being called and a seg fault in Sn
-class FiniteGroup::Element: public Group::Element{
+// not having this defined causes the wrong constructor being called and a seg
+// fault in Sn
+class FiniteGroup::Element : public Group::Element {
 public:
-
-
 };
 
-class FiniteGroup::Function{
+class FiniteGroup::Function {
 public:
-
-
-  double norm() const {double result; for(int i=0; i<order; i++) result+=0/*complex<double>::norm(f[i])*/; return sqrt(result);}
+  double norm() const {
+    double result = 0;
+    for (auto i = 0; i < order; i++)
+      result += 0 /*complex<double>::norm(f[i])*/;
+    return sqrt(result);
+  }
 
   // Group* group;
   int n;
   int order;
-  FIELD* f;
-
-
+  FIELD *f;
 };
 
-
-class FiniteGroup::FourierTransform{
-public:
-
-
-
-};
-
-
-class FiniteGroup::PartialFT{
+class FiniteGroup::FourierTransform {
 public:
 };
 
-
-class FiniteGroup::Ftree{
+class FiniteGroup::PartialFT {
 public:
 };
 
-
-#endif
+class FiniteGroup::Ftree {
+public:
+};

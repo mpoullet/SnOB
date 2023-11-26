@@ -1,5 +1,6 @@
-CFLAGS = -I ../src 
+CFLAGS = -I ../src -Wall -Werror -Wextra -Og -std=c++20 -fsanitize=address -Wc++11-extensions
 LIBS = -lstdc++ -lm
+# CXXFLAGS := 
 
 example1: example1.cpp ../src/Sn.o 
 	gcc -o example1 example1.cpp ../src/*.o $(CFLAGS) $(LIBS)
@@ -46,6 +47,8 @@ example12: example12.cpp ../src/SnFunction.o ../src/SnFourierTransform.o ../src/
 chartable: chartable.cpp ../src/SnFunction.o ../src/SnFourierTransform.o ../src/SnFtree.o 
 	gcc -o chartable chartable.cpp ../src/*.o $(CFLAGS) $(LIBS)
 
+clean:
+	rm example1 example2 example3 example4 example5 example6 example7 example8 example9 example10 example11 example12
 
 
 all: example1 example2 example3 example4 example5 example6 example7 example7b example8 example8b example9 example10 \

@@ -3,9 +3,9 @@
 #include "SnIrreducible.hpp"
 #include <iostream>
 
-main(){
+int main() {
   
-  Sn::Sn G(5);
+  Sn G(5);
 
   Sn::Element sigma(4,1,3,5,2,NULL);
 

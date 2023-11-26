@@ -17,25 +17,23 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the 
+  along with this program; if not, write to the
 
-  Free Software Foundation, Inc., 
-  51 Franklin Street, Fifth Floor, 
+  Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor,
   Boston, MA  02110-1301, USA.
 
-  This software is provided for educational and research purposes. 
-  Commercial use is prohibited. 
+  This software is provided for educational and research purposes.
+  Commercial use is prohibited.
 
   See the accompanying LICENSE for details
 
 ----------------------------------------------------------------------------- */
 
+#pragma once
 
-#ifndef _Partition
-#define _Partition
-
-#include <vector>
 #include <string>
+#include <vector>
 
 class Partition;
 
@@ -43,20 +41,20 @@ class Partition;
 
 using namespace std;
 
-
-class Partition : public vector<int>{
+class Partition : public vector<int> {
 public:
-
   Partition(){};
-  Partition( int a, ...); 
-  Partition(const Sn::Element& sigma); 
+  Partition(int a, ...);
+  Partition(const Sn::Element &sigma);
 
-  int n() const {int result=0; for(int i=0; i<size(); i++) result+=at(i); return result;};
+  int n() const {
+    auto result = 0;
+    for (unsigned i = 0; i < size(); i++)
+      result += at(i);
+    return result;
+  };
 
   vector<Partition> restrictions() const;
 
-  string str() const; 
-
+  string str() const;
 };
-
-#endif

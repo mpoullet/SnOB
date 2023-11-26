@@ -1,4 +1,5 @@
-CFLAGS = #-I /usr/include/custom/matrix
+# CFLAGS = #-I /usr/include/custom/matrix
+CFLAGS := -Wall -Werror -Wextra -Og -std=c++20 -fsanitize=address
 LIBS = -lstdc++ -lm
 
 
@@ -36,13 +37,11 @@ Sn.o: Sn.cpp Sn.hpp SnElement.hpp StandardTableau.hpp Partition.hpp FiniteGroup.
 testSnFtree: testSnFtree.cpp Sn.o SnFtree.o SnFourierTransform.o SnFunction.o SnIrreducible.o StandardTableau.o Partition.o SnElement.o 
 	gcc -o testSnFtree testSnFtree.cpp *.o $(CFLAGS) $(LIBS) 
 
-
-
 SnFiles: Partition.o StandardTableau.o Cycles.o SnElement.o SnIrreducible.o \
 	SnFunction.o SnFourierTransform.o SnFtree.o Sn.o 
 
 
 all: SnFiles 
 
-clean: 
+clean:
 	rm *.o
